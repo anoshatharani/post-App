@@ -1,8 +1,668 @@
-.brand-text {
-      font-family: 'Pacifico', cursive;
-      font-size: 1.8rem;
-      margin-left: 10px;
-    }
-.navbar {
-    background-color: blueviolet;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
+/* ----------------- Navbar ---------------- */
+.navbar {
+    position: relative;
+    padding: 0.8rem 2rem;
+    background: linear-gradient(135deg, #f48fb1, #f06292, #ec407a, #e91e63, #d81b60, #c2185b, #ad1457, #880e4f, #f8bbd0, #f06292, #ec407a, #e91e63);
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease infinite;
+    /* medium speed */
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+}
+
+/* Gradient animation */
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    25% {
+        background-position: 50% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    75% {
+        background-position: 50% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Brand text */
+.brand-text {
+    font-family: "Pacifico", cursive;
+    font-size: 1.6rem;
+    color: #fff;
+    margin-left: 12px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+/* Subtle hover effect on text */
+.navbar-brand:hover .brand-text {
+    color: #ffb6c1;
+    transform: translateY(-2px);
+}
+
+/* Logo styling */
+.navbar-brand img {
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+    display: block;
+    position: relative;
+}
+
+/* Logo hover - subtle and professional */
+.navbar-brand:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    filter: drop-shadow(0 0 8px #ffb6c1) drop-shadow(0 0 12px #ff69b4);
+}
+
+:root {
+    --pink1: #fff0f6;
+    --pink2: #ffd7e9;
+    --pink3: #ffc0da;
+    --pink4: #ff9fcf;
+    --pink5: #ff79bb;
+    --pink6: #ff4fa3;
+    --pink7: #ff1f87;
+    --pink8: #e6006f;
+    --pink9: #cc005e;
+    --pink10: #b3004d;
+    --pink11: #990042;
+    --pink12: #7a0033;
+    --transition: 0.35s cubic-bezier(.25, 1, .3, 1);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(180deg, var(--pink1), var(--pink3));
+    color: #3b0a1b;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* app container */
+.app {
+    width: 100%;
+    padding: 2rem 1rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.hero h1 {
+    background: linear-gradient(90deg, var(--pink6), var(--pink9));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2.3rem;
+    margin-bottom: 0.3rem;
+}
+
+.subtitle {
+    color: #7a0033aa;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* main container */
+.container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* 🌸 Simplified & Elegant Create Post Card */
+.post-form-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 240, 245, 0.95));
+    border-radius: 20px;
+    border: 1px solid rgba(255, 180, 210, 0.5);
+    box-shadow: 0 10px 30px rgba(233, 30, 99, 0.15);
+    padding: 2rem 2.2rem 2.5rem;
+    transition: all var(--transition);
+    backdrop-filter: blur(18px);
+}
+
+.post-form-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 18px 40px rgba(233, 30, 99, 0.25);
+    filter: drop-shadow(0 0 8px rgba(255, 105, 180, 0.4));
+}
+
+.post-form-card h4 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+    background: linear-gradient(90deg, var(--pink6), var(--pink9));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.5px;
+}
+
+/* Inputs */
+/* 🌸 Input fields - pink theme, no blue glow */
+/* File upload */
+.file-btn {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1.5px dashed rgba(233, 30, 99, 0.5);
+    background: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.file-label:hover .file-btn {
+    background: linear-gradient(90deg, var(--pink2), var(--pink3));
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(233, 30, 99, 0.25);
+}
+
+/* Background image picker */
+.bg-select {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.bgImg {
+    width: 80px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: var(--transition);
+}
+
+.bgImg:hover {
+    transform: scale(1.07);
+    box-shadow: 0 4px 12px rgba(233, 30, 99, 0.25);
+}
+
+.bgImg.selectedImg {
+    border-color: var(--pink6);
+    box-shadow: 0 0 10px rgba(233, 30, 99, 0.4);
+}
+
+/* form inputs */
+.form-row {
+    margin-bottom: 1rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+    transition: var(--transition);
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    outline: none;
+    transform: scale(1.02);
+    box-shadow: 0 8px 22px rgba(233, 30, 99, .25);
+}
+
+/* file input */
+.file-input {
+    display: none;
+}
+
+.file-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 12px 16px;
+    text-align: center;
+    border: 1.5px dashed #e91e63aa;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: .95rem;
+    background: rgba(255, 255, 255, .6);
+}
+
+.file-label:hover .file-btn {
+    background: var(--pink2);
+    transform: translateY(-2px);
+}
+
+/* bg selection */
+.bg-select {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.bgImg {
+    width: 80px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: var(--transition);
+}
+
+.bgImg:hover {
+    transform: scale(1.07);
+}
+
+.bgImg.selectedImg {
+    border-color: #e91e63;
+}
+
+/* buttons */
+.btn {
+    border: none;
+    cursor: pointer;
+    border-radius: 999px;
+    padding: 12px 22px;
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1.25);
+    font-weight: 500;
+}
+
+/* 🌸 Add Post Button - soft dreamy style */
+.btn.primary {
+    background: linear-gradient(90deg, #ffd7e9, #ffb6d5);
+    color: #b3004d;
+    border: 1.5px solid rgba(233, 30, 99, 0.2);
+    border-radius: 999px;
+    padding: 12px 22px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    box-shadow: 0 6px 14px rgba(255, 192, 203, 0.4);
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1.25);
+}
+
+.btn.primary:hover {
+    background: linear-gradient(90deg, #ffb6d5, #ff8ab8);
+    color: #7a0033;
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 10px 25px rgba(255, 150, 200, 0.5), 0 0 10px rgba(255, 100, 150, 0.3);
+    filter: drop-shadow(0 0 6px rgba(255, 130, 190, 0.4));
+}
+
+/* posts grid */
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+    padding-bottom: 2rem;
+}
+
+@media(max-width:900px) {
+    .posts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width:600px) {
+    .posts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* post card */
+.card-post h5 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    line-height: 1.3;
+}
+
+.card-post {
+    border-radius: 18px;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(255, 192, 218, .9), rgba(255, 120, 170, .9));
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .15);
+    transition: var(--transition);
+    position: relative;
+    padding: 1rem;
+    /* 🩷 Added inner space between border & card-body */
+}
+
+.card-post:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 45px rgba(0, 0, 0, .25);
+}
+
+@keyframes fadeSlide {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card-post:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 0 25px rgba(255, 120, 200, 0.8), 0 0 45px rgba(255, 150, 220, 0.6);
+    filter: drop-shadow(0 0 12px var(--pink6));
+}
+
+.card-body {
+    padding: 1.6rem 1.8rem 1.8rem 1.8rem;
+    /* 🩷 Balanced breathing space on all sides */
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    /* Adds nice vertical spacing */
+}
+
+.card-body img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 0.8rem;
+    /* ⬅️ slightly more space below image */
+}
+
+.card-post h5 {
+    font-family: 'Pacifico', cursive;
+    margin: 0 0 0.4rem 0;
+    /* ⬅️ spacing below title */
+    background: linear-gradient(45deg, var(--pink5), var(--pink9));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.3rem;
+}
+
+.posted-by {
+    font-size: .9rem;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    color: #ffe5ef;
+    opacity: .9;
+}
+
+.card-post p {
+    color: #fffdfd;
+    opacity: .95;
+    font-size: .95rem;
+    line-height: 1.6;
+}
+
+/* actions */
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.8rem;
+}
+
+.action-group {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+}
+
+/* floating glassy buttons */
+.small-btn {
+    border: none;
+    border-radius: 999px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, .18);
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1.25);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #fff;
+    font-weight: 500;
+    font-size: .9rem;
+    box-shadow: 0 4px 14px rgba(233, 30, 99, .25);
+    transform: translateY(-2px);
+}
+
+.small-btn:hover {
+    background: rgba(255, 255, 255, .28);
+    transform: translateY(-6px) scale(1.07);
+    box-shadow: 0 0 20px rgba(255, 130, 200, .6), 0 0 35px rgba(255, 150, 210, .5);
+    color: #ffeaf5;
+}
+
+.small-btn:active .icon {
+    transform: scale(0.9);
+    transition: transform 0.1s ease;
+}
+
+.icon {
+    font-size: 1.1rem;
+}
+
+/* pink selection */
+::selection {
+    background: #ff99cc;
+    color: #fff;
+}
+
+/* hide scrollbars */
+.posts-grid::-webkit-scrollbar {
+    display: none;
+}
+
+/* === Global Reset: remove all blue focus glows === */
+* {
+    outline: none !important;
+}
+
+/* === Pink Theme Inputs === */
+/* Input + textarea fields */
+input,
+textarea {
+    border: 1.6px solid #f8bbd0;
+    border-radius: 10px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #444;
+    transition: all 0.25s ease;
+    font-family: inherit;
+    width: 100%;
+    outline: none !important;
+    /* removes blue outline */
+    box-shadow: none !important;
+    /* removes blue glow */
+}
+
+/* Focus effect in pink theme */
+input:focus,
+textarea:focus {
+    border-color: var(--pink6);
+    background: #fff;
+    box-shadow: 0 0 10px rgba(233, 30, 99, 0.25);
+    /* subtle pink glow */
+    outline: none !important;
+}
+
+/* 🩷 Focus — pink shadow, no blue outline */
+input:focus,
+textarea:focus {
+    border-color: #ec407a;
+    box-shadow: 0 0 8px rgba(236, 64, 122, 0.35);
+    background: rgba(255, 245, 248, 0.98);
+    outline: none !important;
+}
+
+/* 🧁 Hover — soft border highlight */
+input:hover,
+textarea:hover {
+    border-color: #f48fb1;
+}
+
+/* Description collapse */
+.card-post p {
+    color: #fffdfd;
+    opacity: .95;
+    font-size: .95rem;
+    line-height: 1.5;
+    max-height: 4.5em;
+    /* 🩷 Show only about 3 lines */
+    overflow: hidden;
+    position: relative;
+    transition: max-height 0.4s ease;
+}
+
+.card-post p.expanded {
+    max-height: 100vh;
+    /* fully visible when expanded */
+}
+
+.view-toggle {
+    background: linear-gradient(90deg, var(--pink5), var(--pink8));
+    border: none;
+    color: #fff;
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    margin-top: 6px;
+    box-shadow: 0 3px 12px rgba(233, 30, 99, .3);
+    transition: var(--transition);
+    align-self: flex-start;
+}
+
+.view-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(233, 30, 99, .4);
+    background: linear-gradient(90deg, var(--pink6), var(--pink9));
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.view-toggle {
+    background: linear-gradient(90deg, var(--pink5), var(--pink8));
+    border: none;
+    color: #fff;
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    margin-top: 6px;
+    box-shadow: 0 3px 12px rgba(233, 30, 99, 0.3);
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    align-self: flex-start;
+}
+
+.view-toggle:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(233, 30, 99, 0.4);
+    background: linear-gradient(90deg, var(--pink6), var(--pink9));
+}
+
+/* 🌸 Add Post Button - soft glassy + animated glow */
+.add-post-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, rgba(255, 192, 203, 0.85), rgba(255, 182, 193, 0.95));
+    color: var(--pink10);
+    font-weight: 600;
+    padding: 0.75rem 1.8rem;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 1rem;
+    letter-spacing: 0.4px;
+    box-shadow: 0 6px 15px rgba(233, 30, 99, 0.15);
+    transition: all 0.25s ease;
+    backdrop-filter: blur(10px);
+    animation: softPulse 3s ease-in-out infinite;
+}
+
+.add-post-btn:hover {
+    background: linear-gradient(90deg, var(--pink3), var(--pink5));
+    color: #fff;
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 10px 25px rgba(233, 30, 99, 0.25);
+}
+
+.add-post-btn:active {
+    transform: scale(0.97);
+    box-shadow: 0 3px 10px rgba(233, 30, 99, 0.2);
+}
+
+/* ✨ Soft pulsing glow animation */
+@keyframes softPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px rgba(255, 182, 193, 0.3), 0 0 25px rgba(255, 192, 203, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 18px rgba(255, 105, 180, 0.4), 0 0 35px rgba(255, 182, 193, 0.35);
+    }
+}
+
+/* 💫 Modern glassy SweetAlert popups */
+.swal2-popup.swal-modern {
+    border-radius: 20px !important;
+    backdrop-filter: blur(12px);
+    background: linear-gradient(135deg, rgba(255, 240, 245, 0.95), rgba(255, 228, 235, 0.9)) !important;
+    box-shadow: 0 10px 35px rgba(233, 30, 99, 0.25);
+    color: var(--pink10);
+}
+
+/* 🌸 Remove default blue outline and glow from all form fields */
+input,
+textarea,
+select,
+button {
+    outline: none !important;
+    box-shadow: none !important;
+    border: 1.6px solid #f8bbd0 !important;
+    border-radius: 10px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #444;
+    transition: all 0.25s ease;
+    font-family: inherit;
+    width: 100%;
+}
+
+/* 💗 Add a soft pink focus effect */
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+    outline: none !important;
+    box-shadow: 0 0 10px rgba(233, 30, 99, 0.3) !important;
+    border-color: #f48fb1 !important;
+    background: #fff !important;
+}
+
