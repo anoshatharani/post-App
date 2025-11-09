@@ -136,16 +136,77 @@ body {
     gap: 2rem;
 }
 
-/* 🌸 Simplified & Elegant Create Post Card */
+/* 🌸 Neon Create Post Card */
 .post-form-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 240, 245, 0.95));
-    border-radius: 20px;
-    border: 1px solid rgba(255, 180, 210, 0.5);
-    box-shadow: 0 10px 30px rgba(233, 30, 99, 0.15);
-    padding: 2rem 2.2rem 2.5rem;
-    transition: all var(--transition);
-    backdrop-filter: blur(18px);
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(255, 240, 245, 0.95));
+    border-radius: 22px;
+    box-shadow: 0 0 20px rgba(255, 182, 193, 0.3);
+    padding: 2rem 2.4rem;
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255, 182, 193, 0.5);
 }
+
+/* 🌈 Animated neon border glow */
+.post-form-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg,
+            #ff80ab,
+            #f48fb1,
+            #ec407a,
+            #f06292,
+            #ff80ab);
+    background-size: 400%;
+    border-radius: inherit;
+    z-index: 0;
+    filter: blur(8px);
+    animation: neonGlow 6s linear infinite;
+    opacity: 0.6;
+}
+
+/* ensure content above glow */
+.post-form-card>* {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes neonGlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Hover lift + glow pulse */
+.post-form-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 0 35px rgba(255, 105, 180, 0.5);
+}
+
+/* Neon text title */
+.post-form-card h4 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    background: linear-gradient(90deg, #f48fb1, #ec407a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.6px;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 6px rgba(255, 105, 180, 0.3);
+}
+
 
 .post-form-card:hover {
     transform: translateY(-6px) scale(1.02);
@@ -166,24 +227,24 @@ body {
 
 /* 🌸 Input fields - theme consistent */
 .form-control {
-  width: 100%;
-  padding: 12px 16px;
-  border: 1.5px solid rgba(233, 30, 99, 0.2);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  color: #4a0e2e;
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid rgba(233, 30, 99, 0.2);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    color: #4a0e2e;
 }
 
 /* 🌷 Focus state — no blue glow, soft pink theme */
 .form-control:focus {
-  outline: none !important;
-  border-color: var(--pink6) !important;
-  box-shadow: 0 0 8px rgba(233, 30, 99, 0.4), 0 0 20px rgba(255, 160, 200, 0.4);
-  background: #fff;
-  transform: scale(1.02);
+    outline: none !important;
+    border-color: var(--pink6) !important;
+    box-shadow: 0 0 8px rgba(233, 30, 99, 0.4), 0 0 20px rgba(255, 160, 200, 0.4);
+    background: #fff;
+    transform: scale(1.02);
 }
 
 
@@ -228,24 +289,24 @@ body {
 
 /* 🌸 Input fields - theme consistent */
 .form-control {
-  width: 100%;
-  padding: 12px 16px;
-  border: 1.5px solid rgba(233, 30, 99, 0.2);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  color: #4a0e2e;
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid rgba(233, 30, 99, 0.2);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    color: #4a0e2e;
 }
 
 /* 🌷 Focus state — no blue glow, soft pink theme */
 .form-control:focus {
-  outline: none !important;
-  border-color: var(--pink6) !important;
-  box-shadow: 0 0 8px rgba(233, 30, 99, 0.4), 0 0 20px rgba(255, 160, 200, 0.4);
-  background: #fff;
-  transform: scale(1.02);
+    outline: none !important;
+    border-color: var(--pink6) !important;
+    box-shadow: 0 0 8px rgba(233, 30, 99, 0.4), 0 0 20px rgba(255, 160, 200, 0.4);
+    background: #fff;
+    transform: scale(1.02);
 }
 
 
@@ -366,7 +427,7 @@ body {
     box-shadow: 0 8px 24px rgba(0, 0, 0, .15);
     transition: var(--transition);
     position: relative;
-    padding: 1rem;
+    /* padding: 1rem; */
     /* 🩷 Added inner space between border & card-body */
 }
 
@@ -403,32 +464,33 @@ body {
     object-fit: cover;
     border-radius: 10px;
     margin-bottom: 0.8rem;
-    /* ⬅️ slightly more space below image */
 }
 
 .card-post h5 {
     font-family: 'Pacifico', cursive;
     margin: 0 0 0.4rem 0;
-    /* ⬅️ spacing below title */
     background: linear-gradient(45deg, var(--pink5), var(--pink9));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 1.3rem;
+    font-size: 1.9rem;
+    padding-left: 1rem;
 }
 
 .posted-by {
-    font-size: .9rem;
+    font-size: 1.2rem;
     text-align: center;
     font-family: 'Quicksand', sans-serif;
-    color: #ffe5ef;
     opacity: .9;
+    padding-left: 1rem;
+
 }
 
 .card-post p {
-    color: #fffdfd;
     opacity: .95;
-    font-size: .95rem;
+    font-size: 1.1rem;
     line-height: 1.6;
+    padding-left: 1rem;
+
 }
 
 /* actions */
@@ -600,23 +662,42 @@ html {
     background: linear-gradient(90deg, var(--pink6), var(--pink9));
 }
 
-/* 🌸 Add Post Button - soft glassy + animated glow */
+/* ✨ Neon Add Post Button */
 .add-post-btn {
     display: inline-block;
-    background: linear-gradient(90deg, rgba(255, 192, 203, 0.85), rgba(255, 182, 193, 0.95));
-    color: var(--pink10);
+    background: linear-gradient(90deg, #ffb6d5, #ff80ab);
+    color: #7a0033;
     font-weight: 600;
-    padding: 0.75rem 1.8rem;
+    padding: 0.8rem 2rem;
     border: none;
     border-radius: 14px;
     cursor: pointer;
     font-size: 1rem;
     letter-spacing: 0.4px;
-    box-shadow: 0 6px 15px rgba(233, 30, 99, 0.15);
+    box-shadow: 0 0 15px rgba(255, 150, 200, 0.4), 0 0 25px rgba(255, 130, 190, 0.25);
     transition: all 0.25s ease;
-    backdrop-filter: blur(10px);
-    animation: softPulse 3s ease-in-out infinite;
+    animation: neonPulse 3s ease-in-out infinite;
 }
+
+.add-post-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 0 25px rgba(255, 100, 180, 0.6), 0 0 40px rgba(255, 120, 190, 0.4);
+    background: linear-gradient(90deg, #ff8ab8, #ffb6d5);
+    color: #fff;
+}
+
+@keyframes neonPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 15px rgba(255, 150, 200, 0.4), 0 0 25px rgba(255, 130, 190, 0.25);
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(255, 105, 180, 0.6), 0 0 40px rgba(255, 182, 193, 0.45);
+    }
+}
+
 
 .add-post-btn:hover {
     background: linear-gradient(90deg, var(--pink3), var(--pink5));
@@ -651,6 +732,7 @@ html {
     box-shadow: 0 10px 35px rgba(233, 30, 99, 0.25);
     color: var(--pink10);
 }
+
 /* 💗 Add a soft pink focus effect */
 input:focus,
 textarea:focus,

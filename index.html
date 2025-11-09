@@ -13,64 +13,67 @@
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 <!-- ----------------google fonts -------------- -->
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
- <!-- SweetAlert2 -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <body>
     <!-- --------------navbar----------------- -->
     <nav class="navbar">
         <div class="container d-flex justify-content-start align-items-center">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="images/people-1157116_1280-removebg-preview.png" alt="Logo" width="100" height="60">
+                <img src="images/logo.png" alt="Logo" width="100" height="90">
                 <span class="brand-text">POST-APP</span>
             </a>
         </div>
     </nav>
 
- <main class="app">
-    <header class="hero">
-      <h1>Welcome to POST-APP 💜</h1>
-      <p class="subtitle">Create, like & share — smooth, baby-pink vibes</p>
-    </header>
+    <main class="app">
+        <header class="hero">
+            <h1>Welcome to POST-APP 💜</h1>
+            <p class="subtitle">Create, like & share — smooth, baby-pink vibes</p>
+        </header>
 
-    <section class="container">
-      <!-- Post Form -->
-      <form class="card post-form-card" onsubmit="event.preventDefault(); post();">
-        <h4>Create a Post</h4>
+        <section class="container">
+            <!-- Post Form -->
+            <form class="card post-form-card" onsubmit="event.preventDefault(); post();">
+                <h4>Create a Post</h4>
 
-        <div class="form-row">
-          <input type="text" id="name" class="form-control" placeholder="Your Name">
-        </div>
+                <div class="form-row">
+                    <input type="text" id="name" class="form-control" placeholder="Your Name">
+                </div>
 
-        <div class="form-row">
-          <input type="text" id="title" class="form-control" placeholder="Title">
-        </div>
+                <div class="form-row">
+                    <input type="text" id="title" class="form-control" placeholder="Title">
+                </div>
 
-        <div class="form-row">
-          <textarea id="description" class="form-control" rows="3" placeholder="Description"></textarea>
-        </div>
+                <div class="form-row">
+                    <textarea id="description" class="form-control" rows="3" placeholder="Description"></textarea>
+                </div>
 
-        <label class="label">Choose Background Image:</label>
-        <div class="bg-select">
-          <img src="images/people-1157116_1280-removebg-preview.png" class="bgImg" onclick="selectImg(this.src)">
-          <img src="images/bg2.jpg" class="bgImg" onclick="selectImg(this.src)">
-          <img src="images/bg3.jpg" class="bgImg" onclick="selectImg(this.src)">
-          <img src="images/bg4.jpg" class="bgImg" onclick="selectImg(this.src)">
-        </div>
+                <label class="label">Choose Background Image:</label>
+                <div class="bg-select">
+                    <img src="images/image-1.jpg" class="bgImg" onclick="selectImg(this.src)">
+                    <img src="images/couple.png" class="bgImg" onclick="selectImg(this.src)">
+                    <img src="images/message.png" class="bgImg" onclick="selectImg(this.src)">
+                    <img src="images/painting.jpg" class="bgImg" onclick="selectImg(this.src)">
+                    <img src="images/social-media.png" class="bgImg" onclick="selectImg(this.src)">
 
-        <div class="form-row file-row">
-          <label class="file-label">
-            <input id="uploadImage" type="file" class="file-input" accept="image/*">
-            <span class="file-btn">Choose image (optional)</span>
-          </label>
-        </div>
+                </div>
 
-<button id="postBtn" class="add-post-btn" onclick="post()">Add Post</button>
-      </form>
+                <div class="form-row file-row">
+                    <label class="file-label">
+                        <input id="uploadImage" type="file" class="file-input" accept="image/*">
+                        <span class="file-btn">Choose image (optional)</span>
+                    </label>
+                </div>
 
-      <!-- Posts -->
-      <div id="posts" class="posts-grid"></div>
-    </section>
-  </main>
+                <button id="postBtn" class="add-post-btn" onclick="post()">Add Post</button>
+            </form>
+
+            <!-- Posts -->
+            <div id="posts" class="posts-grid"></div>
+        </section>
+    </main>
 
 
 
