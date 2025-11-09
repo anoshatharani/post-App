@@ -1,28 +1,27 @@
-
+// ===== GLOBALS =====
 let cardBg = '';
+let editingIndex = null;
 let postsData = JSON.parse(localStorage.getItem("postsData")) || [];
+
 const nameInput = document.getElementById("name");
 const titleInput = document.getElementById("title");
 const descInput = document.getElementById("description");
 const uploadInput = document.getElementById("uploadImage");
 const posts = document.getElementById("posts");
 
+// ===== LOAD POSTS =====
+window.onload = () => postsData.forEach(p => renderPost(p));
 
-// Load posts
-window.onload = () => {
-  postsData.forEach(p => renderPost(p));
-};
-
-// Select bg
-function selectImg(src) {
+// ===== SELECT BACKGROUND IMAGE =====
+function selectImg(src, event) {
   cardBg = src;
   document.querySelectorAll(".bgImg").forEach(img => img.classList.remove("selectedImg"));
   event.target.classList.add("selectedImg");
 }
 
-// Add post
+// ===== ADD OR UPDATE POST =====
 function post() {
-  const name = nameInput.value.trim();
+  const name = nameInput.value.trim() || "Anonymous";
   const title = titleInput.value.trim();
   const description = descInput.value.trim();
   const upload = uploadInput.files[0];
@@ -42,24 +41,22 @@ function post() {
   const reader = new FileReader();
   reader.onload = e => {
     const postObj = {
-      name: name || "Anonymous",
-      title, description,
+      name, title, description,
       bg: cardBg,
       img: e.target.result || '',
-      likes: 0, dislikes: 0
+      likes: 0,
+      dislikes: 0
     };
 
-    // ✅ EDIT MODE
     if (editingIndex !== null) {
       const oldPost = postsData[editingIndex];
-
-      // check if anything actually changed
-      const same =
+      const same = (
         oldPost.name === postObj.name &&
         oldPost.title === postObj.title &&
         oldPost.description === postObj.description &&
         oldPost.bg === postObj.bg &&
-        oldPost.img === postObj.img;
+        oldPost.img === postObj.img
+      );
 
       if (same) {
         Swal.fire({
@@ -73,54 +70,50 @@ function post() {
         return;
       }
 
-      // if edited
       postsData[editingIndex] = postObj;
       editingIndex = null;
 
       Swal.fire({
-        icon: 'success', title: '✅ Post Updated!',
-        timer: 1200, showConfirmButton: false,
+        icon: 'success',
+        title: '✅ Post Updated!',
+        timer: 1200,
+        showConfirmButton: false,
         background: 'linear-gradient(135deg,#fff0f5,#ffe4e9)',
         color: '#d81b60'
       });
     } else {
-      // ✅ NEW POST
       postsData.push(postObj);
       Swal.fire({
-        icon: 'success', title: '✨ Post Added!',
-        timer: 1200, showConfirmButton: false,
+        icon: 'success',
+        title: '✨ Post Added!',
+        timer: 1200,
+        showConfirmButton: false,
         background: 'linear-gradient(135deg,#fff0f5,#ffe4e9)',
         color: '#d81b60'
       });
     }
 
     localStorage.setItem("postsData", JSON.stringify(postsData));
-    posts.innerHTML = '';
-    postsData.forEach(renderPost);
-
-    // Reset form
-    nameInput.value = titleInput.value = descInput.value = '';
-    uploadInput.value = '';
-    cardBg = '';
-    document.querySelectorAll(".bgImg").forEach(i => i.classList.remove("selectedImg"));
-
-    // Reset button text
-    const postBtn = document.getElementById("postBtn");
-    postBtn.innerText = "Add Post";
+    refreshPosts();
+    resetForm();
   };
 
   if (upload) reader.readAsDataURL(upload);
   else reader.onload({ target: { result: '' } });
 }
 
+// ===== RENDER ALL POSTS =====
+function refreshPosts() {
+  posts.innerHTML = '';
+  postsData.forEach(renderPost);
+}
 
-// Render Post
+// ===== RENDER ONE POST =====
 function renderPost(post) {
-  const postsContainer = document.getElementById("posts");
   const card = document.createElement("div");
   card.className = "card-post";
 
-  let innerHTML = `
+  card.innerHTML = `
     <div class="card-body" style="${post.bg ? `background-image:url(${post.bg});background-size:cover;background-position:center;` : ''}">
       ${post.img ? `<img src="${post.img}">` : ''}
       <h5>${post.title}</h5>
@@ -128,29 +121,19 @@ function renderPost(post) {
       <p class="post-desc">${post.description}</p>
       <div class="card-actions">
         <div class="action-group">
-          <button class="small-btn" onclick="likePost(this)">
-            <span class="icon">❤️</span><span>${post.likes}</span>
-          </button>
-          <button class="small-btn" onclick="dislikePost(this)">
-            <span class="icon">💔</span><span>${post.dislikes}</span>
-          </button>
+          <button class="small-btn" onclick="likePost(this)"><span class="icon">❤️</span><span>${post.likes}</span></button>
+          <button class="small-btn" onclick="dislikePost(this)"><span class="icon">💔</span><span>${post.dislikes}</span></button>
         </div>
         <div class="action-group">
-          <button class="small-btn" onclick="editPost(this)">
-            <span class="icon">✏️</span>
-          </button>
-          <button class="small-btn" onclick="deletePost(this)">
-            <span class="icon">🗑️</span>
-          </button>
+          <button class="small-btn" onclick="editPost(this)"><span class="icon">✏️</span></button>
+          <button class="small-btn" onclick="deletePost(this)"><span class="icon">🗑️</span></button>
         </div>
       </div>
-    </div>`;
-  card.innerHTML = innerHTML;
+    </div>
+  `;
 
-  // ✅ View More / View Less logic (smooth + natural)
   const desc = card.querySelector(".post-desc");
   const fullText = desc.textContent.trim();
-
   if (fullText.length > 120) {
     const shortText = fullText.slice(0, 120) + "...";
     desc.textContent = shortText;
@@ -161,11 +144,9 @@ function renderPost(post) {
 
     toggleBtn.addEventListener("click", () => {
       const expanded = desc.classList.toggle("expanded");
-
       desc.textContent = expanded ? fullText : shortText;
       toggleBtn.textContent = expanded ? "View less" : "View more";
 
-      // ✅ Smooth scroll both ways
       const targetY = card.getBoundingClientRect().top + window.scrollY - 80;
       const startY = window.scrollY;
       const distance = targetY - startY;
@@ -181,39 +162,32 @@ function renderPost(post) {
       }
       requestAnimationFrame(smoothScroll);
     });
-
     desc.insertAdjacentElement("afterend", toggleBtn);
   }
 
-  postsContainer.prepend(card);
+  posts.prepend(card);
 }
 
-// Edit post
+// ===== EDIT POST =====
 function editPost(btn) {
   const card = btn.closest(".card-post");
   const index = postsData.length - Array.from(card.parentNode.children).indexOf(card) - 1;
   const post = postsData[index];
   editingIndex = index;
 
-  // Fill form fields
   nameInput.value = post.name;
   titleInput.value = post.title;
   descInput.value = post.description;
   cardBg = post.bg || '';
 
-  // Highlight selected background if any
   document.querySelectorAll(".bgImg").forEach(img =>
     img.classList.toggle("selectedImg", img.src === cardBg)
   );
 
-  // Change button text to show update mode
-  const postBtn = document.getElementById("postBtn");
-  postBtn.innerText = "Update Post";
+  document.getElementById("postBtn").innerText = "Update Post";
 }
 
-
-
-// ✅ DELETE post function (fixed)
+// ===== DELETE POST =====
 function deletePost(btn) {
   const card = btn.closest(".card-post");
   const index = Array.from(card.parentNode.children).indexOf(card);
@@ -227,33 +201,29 @@ function deletePost(btn) {
     confirmButtonText: 'Yes, delete it',
     cancelButtonText: 'Cancel',
     reverseButtons: true,
-    background: 'linear-gradient(135deg, #fff0f5, #ffe4e9)',
+    background: 'linear-gradient(135deg,#fff0f5,#ffe4e9)',
     color: '#d81b60',
     confirmButtonColor: '#f48fb1',
-    cancelButtonColor: '#f8bbd0',
-    customClass: { popup: 'swal-modern' },
-  }).then((result) => {
+    cancelButtonColor: '#f8bbd0'
+  }).then(result => {
     if (result.isConfirmed) {
       postsData.splice(postsData.length - index - 1, 1);
       localStorage.setItem("postsData", JSON.stringify(postsData));
       card.remove();
-
       Swal.fire({
         icon: 'success',
         title: 'Deleted!',
         text: 'Your post has been removed.',
         timer: 1200,
         showConfirmButton: false,
-        background: 'linear-gradient(135deg, #fff0f5, #ffe4e9)',
-        color: '#d81b60',
-        customClass: { popup: 'swal-modern' },
+        background: 'linear-gradient(135deg,#fff0f5,#ffe4e9)',
+        color: '#d81b60'
       });
     }
   });
 }
 
-
-// Like / Dislike
+// ===== LIKE / DISLIKE =====
 function likePost(btn) {
   const card = btn.closest(".card-post");
   const index = Array.from(card.parentNode.children).indexOf(card);
@@ -272,7 +242,18 @@ function dislikePost(btn) {
   localStorage.setItem("postsData", JSON.stringify(postsData));
 }
 
-// Enter + Delete keys
+// ===== RESET FORM =====
+function resetForm() {
+  nameInput.value = '';
+  titleInput.value = '';
+  descInput.value = '';
+  uploadInput.value = '';
+  cardBg = '';
+  document.querySelectorAll(".bgImg").forEach(i => i.classList.remove("selectedImg"));
+  document.getElementById("postBtn").innerText = "Add Post";
+}
+
+// ===== ENTER & DELETE KEYS =====
 ["name", "title", "description", "uploadImage"].forEach(id => {
   document.getElementById(id).addEventListener("keydown", e => {
     if (e.key === "Enter") {

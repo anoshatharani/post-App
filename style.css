@@ -164,20 +164,28 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* Inputs */
-/* 🌸 Input fields - pink theme, no blue glow */
-/* File upload */
-.file-btn {
-    display: block;
-    width: 100%;
-    padding: 12px 16px;
-    text-align: center;
-    border-radius: 10px;
-    border: 1.5px dashed rgba(233, 30, 99, 0.5);
-    background: rgba(255, 255, 255, 0.7);
-    cursor: pointer;
-    transition: var(--transition);
+/* 🌸 Input fields - theme consistent */
+.form-control {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid rgba(233, 30, 99, 0.2);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  color: #4a0e2e;
 }
+
+/* 🌷 Focus state — no blue glow, soft pink theme */
+.form-control:focus {
+  outline: none !important;
+  border-color: var(--pink6) !important;
+  box-shadow: 0 0 8px rgba(233, 30, 99, 0.4), 0 0 20px rgba(255, 160, 200, 0.4);
+  background: #fff;
+  transform: scale(1.02);
+}
+
 
 .file-label:hover .file-btn {
     background: linear-gradient(90deg, var(--pink2), var(--pink3));
@@ -218,22 +226,28 @@ body {
     margin-bottom: 1rem;
 }
 
+/* 🌸 Input fields - theme consistent */
 .form-control {
-    width: 100%;
-    padding: 12px 16px;
-    border: none;
-    border-radius: 12px;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
-    transition: var(--transition);
-    font-size: 1rem;
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid rgba(233, 30, 99, 0.2);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  color: #4a0e2e;
 }
 
+/* 🌷 Focus state — no blue glow, soft pink theme */
 .form-control:focus {
-    outline: none;
-    transform: scale(1.02);
-    box-shadow: 0 8px 22px rgba(233, 30, 99, .25);
+  outline: none !important;
+  border-color: var(--pink6) !important;
+  box-shadow: 0 0 8px rgba(233, 30, 99, 0.4), 0 0 20px rgba(255, 160, 200, 0.4);
+  background: #fff;
+  transform: scale(1.02);
 }
+
 
 /* file input */
 .file-input {
@@ -637,32 +651,10 @@ html {
     box-shadow: 0 10px 35px rgba(233, 30, 99, 0.25);
     color: var(--pink10);
 }
-
-/* 🌸 Remove default blue outline and glow from all form fields */
-input,
-textarea,
-select,
-button {
-    outline: none !important;
-    box-shadow: none !important;
-    border: 1.6px solid #f8bbd0 !important;
-    border-radius: 10px;
-    padding: 10px 12px;
-    background: rgba(255, 255, 255, 0.9);
-    color: #444;
-    transition: all 0.25s ease;
-    font-family: inherit;
-    width: 100%;
-}
-
 /* 💗 Add a soft pink focus effect */
 input:focus,
 textarea:focus,
 select:focus,
 button:focus {
-    outline: none !important;
     box-shadow: 0 0 10px rgba(233, 30, 99, 0.3) !important;
-    border-color: #f48fb1 !important;
-    background: #fff !important;
 }
-
