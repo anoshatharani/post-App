@@ -132,38 +132,38 @@ function renderPost(post) {
     </div>
   `;
 
-  const desc = card.querySelector(".post-desc");
-  const fullText = desc.textContent.trim();
-  if (fullText.length > 120) {
-    const shortText = fullText.slice(0, 120) + "...";
-    desc.textContent = shortText;
+  // const desc = card.querySelector(".post-desc");
+  // const fullText = desc.textContent.trim();
+  // if (fullText.length > 120) {
+  //   const shortText = fullText.slice(0, 120) + "...";
+  //   desc.textContent = shortText;
 
-    const toggleBtn = document.createElement("button");
-    toggleBtn.className = "view-toggle";
-    toggleBtn.textContent = "View more";
+  //   const toggleBtn = document.createElement("button");
+  //   toggleBtn.className = "view-toggle";
+  //   toggleBtn.textContent = "View more";
 
-    toggleBtn.addEventListener("click", () => {
-      const expanded = desc.classList.toggle("expanded");
-      desc.textContent = expanded ? fullText : shortText;
-      toggleBtn.textContent = expanded ? "View less" : "View more";
+  //   toggleBtn.addEventListener("click", () => {
+  //     const expanded = desc.classList.toggle("expanded");
+  //     desc.textContent = expanded ? fullText : shortText;
+  //     toggleBtn.textContent = expanded ? "View less" : "View more";
 
-      const targetY = card.getBoundingClientRect().top + window.scrollY - 80;
-      const startY = window.scrollY;
-      const distance = targetY - startY;
-      const duration = 700;
-      let startTime = null;
+  //     const targetY = card.getBoundingClientRect().top + window.scrollY - 80;
+  //     const startY = window.scrollY;
+  //     const distance = targetY - startY;
+  //     const duration = 700;
+  //     let startTime = null;
 
-      function smoothScroll(timestamp) {
-        if (!startTime) startTime = timestamp;
-        const progress = Math.min((timestamp - startTime) / duration, 1);
-        const ease = 1 - Math.pow(1 - progress, 3);
-        window.scrollTo(0, startY + distance * ease);
-        if (progress < 1) requestAnimationFrame(smoothScroll);
-      }
-      requestAnimationFrame(smoothScroll);
-    });
-    desc.insertAdjacentElement("afterend", toggleBtn);
-  }
+  //     function smoothScroll(timestamp) {
+  //       if (!startTime) startTime = timestamp;
+  //       const progress = Math.min((timestamp - startTime) / duration, 1);
+  //       const ease = 1 - Math.pow(1 - progress, 3);
+  //       window.scrollTo(0, startY + distance * ease);
+  //       if (progress < 1) requestAnimationFrame(smoothScroll);
+  //     }
+  //     requestAnimationFrame(smoothScroll);
+  //   });
+  //   desc.insertAdjacentElement("afterend", toggleBtn);
+  // }
 
   posts.prepend(card);
 }

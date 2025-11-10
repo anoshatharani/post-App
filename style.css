@@ -87,10 +87,22 @@
     --pink12: #7a0033;
     --transition: 0.35s cubic-bezier(.25, 1, .3, 1);
 }
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.85; /* thoda transparent look */
+  pointer-events: none; /* user clicks block na ho */
+}
+
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(180deg, var(--pink1), var(--pink3));
+    /* background: linear-gradient(180deg, var(--pink1), var(--pink3)); */
     color: #3b0a1b;
     margin: 0;
     padding: 0;
@@ -477,7 +489,7 @@ body {
 }
 
 .posted-by {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     text-align: center;
     font-family: 'Quicksand', sans-serif;
     opacity: .9;
@@ -487,10 +499,10 @@ body {
 
 .card-post p {
     opacity: .95;
-    font-size: 1.1rem;
+    font-size: 1.9rem;
     line-height: 1.6;
     padding-left: 1rem;
-
+    color: #880e4f !important;
 }
 
 /* actions */
@@ -600,66 +612,8 @@ textarea:hover {
     border-color: #f48fb1;
 }
 
-/* Description collapse */
-.card-post p {
-    color: #fffdfd;
-    opacity: .95;
-    font-size: .95rem;
-    line-height: 1.5;
-    max-height: 4.5em;
-    /* 🩷 Show only about 3 lines */
-    overflow: hidden;
-    position: relative;
-    transition: max-height 0.4s ease;
-}
-
-.card-post p.expanded {
-    max-height: 100vh;
-    /* fully visible when expanded */
-}
-
-.view-toggle {
-    background: linear-gradient(90deg, var(--pink5), var(--pink8));
-    border: none;
-    color: #fff;
-    border-radius: 999px;
-    padding: 6px 14px;
-    font-size: 0.85rem;
-    cursor: pointer;
-    margin-top: 6px;
-    box-shadow: 0 3px 12px rgba(233, 30, 99, .3);
-    transition: var(--transition);
-    align-self: flex-start;
-}
-
-.view-toggle:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(233, 30, 99, .4);
-    background: linear-gradient(90deg, var(--pink6), var(--pink9));
-}
-
 html {
     scroll-behavior: smooth;
-}
-
-.view-toggle {
-    background: linear-gradient(90deg, var(--pink5), var(--pink8));
-    border: none;
-    color: #fff;
-    border-radius: 999px;
-    padding: 6px 14px;
-    font-size: 0.85rem;
-    cursor: pointer;
-    margin-top: 6px;
-    box-shadow: 0 3px 12px rgba(233, 30, 99, 0.3);
-    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
-    align-self: flex-start;
-}
-
-.view-toggle:hover {
-    transform: translateY(-2px) scale(1.03);
-    box-shadow: 0 8px 20px rgba(233, 30, 99, 0.4);
-    background: linear-gradient(90deg, var(--pink6), var(--pink9));
 }
 
 /* ✨ Neon Add Post Button */
@@ -739,4 +693,32 @@ textarea:focus,
 select:focus,
 button:focus {
     box-shadow: 0 0 10px rgba(233, 30, 99, 0.3) !important;
+}
+
+/* 🩷 Auto-fit post content height — FINAL FIX */
+.card-post {
+  height: auto !important;
+}
+
+.card-body {
+  height: auto !important;
+  flex-grow: 1;
+}
+
+.card-post p {
+  max-height: none !important;
+  overflow: visible !important;
+  white-space: normal !important;
+  display: block;
+  font-family: 'Quicksand', sans-serif !important;
+  font-size: 1.2rem !important;
+  line-height: 1.6 !important;
+  color: #880e4f !important;
+  margin: 0.6rem 0 !important;
+}
+
+.card-post h5,
+.posted-by {
+  white-space: normal !important;
+  overflow: visible !important;
 }
